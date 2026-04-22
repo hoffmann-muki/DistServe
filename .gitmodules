@@ -1,0 +1,4 @@
+[submodule "SwiftTransformer"]
+	path = SwiftTransformer
+	url = https://github.com/hoffmann-muki/SwiftTransformer.git
+	branch = search-ttc
