@@ -1,4 +1,5 @@
 import argparse
+import importlib
 
 from distserve import OfflineLLM, SamplingParams
 from distserve.config import (
@@ -39,6 +40,12 @@ def build_parser() -> argparse.ArgumentParser:
         type=int,
         default=0,
         help="Random seed.",
+    )
+    parser.add_argument(
+        "--ray-address",
+        type=str,
+        default=None,
+        help="Optional Ray address to connect to (for multi-node runs). Use 'auto' to connect to an existing cluster.",
     )
 
     parser.add_argument(
@@ -152,6 +159,10 @@ def build_parser() -> argparse.ArgumentParser:
 
 def main() -> None:
     args = build_parser().parse_args()
+
+    if args.ray_address is not None:
+        ray = importlib.import_module("ray")
+        ray.init(address=args.ray_address)
 
     prompts = args.prompts or [
         "Life blooms like a flower. Far away or by the road. Waiting",
