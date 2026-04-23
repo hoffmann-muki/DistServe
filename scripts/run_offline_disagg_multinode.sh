@@ -137,7 +137,6 @@ cat > "$REMOTE_SCRIPT" <<'EOF'
 set -euo pipefail
 
 if command -v conda >/dev/null 2>&1; then
-  source "$(conda info --base)/etc/profile.d/conda.sh"
   conda activate "${CONDA_ENV}"
 fi
 
