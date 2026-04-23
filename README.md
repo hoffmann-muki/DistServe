@@ -42,6 +42,8 @@ DistServe relies on [Ray](https://ray.io) to implement distributed workers. If y
 
 DistServe requires at least two GPUs to play with. We provide an offline inference example in `examples/offline.py`.
 
+If you want to test tensor parallelism and pipeline parallelism independently for the context and decoding stages, use `examples/offline_disagg.py`. It exposes CLI flags for both stages, with defaults set to `1` so no parallelism is used unless you opt in.
+
 ### Run online example
 
 To run online inference, you need to launch the DistServe API server, see the comments in `distserve/api_server/distserve_api_server.py`.
